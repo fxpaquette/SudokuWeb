@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+
+    background: #c8c8c8 url('assets/images/lab4.PNG');
+    background-repeat: repeat;
+    /*background-attachment: fixed;*/
+    /*background-position: center;*/
+    background-position-y: 80px;
+    background-size: 65%;
+
+}

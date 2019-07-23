@@ -1,0 +1,26 @@
+
+  .master {
+    display: grid;
+    grid-template-areas:
+                "select"
+                "preview";
+  }
+  
+  .file-select {
+    grid-area: select;
+    padding-left: 100px
+
+  }
+  
+  .view {
+    grid-area: preview;
+    margin: 2rem 0;
+    width: 320px;
+    height: 320px;
+    background-image: url("../../assets/images/degrade.png");
+ 
+  }
+
+  .image {
+    padding: 10px
+  }
