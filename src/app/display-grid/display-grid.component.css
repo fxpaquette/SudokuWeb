@@ -1,0 +1,36 @@
+.box-2 {
+    display: grid;
+    grid-template-areas:
+                "button"
+                "preview";
+  }
+  
+  .convert-button-div {
+    grid-area: button;
+    padding-left: 100px
+
+  }
+  
+  .grid-view {
+    grid-area: preview;
+    margin: 2rem 0;
+    width: 320px;
+    height: 320px;
+    background-image: url("../../assets/images/degrade.png");
+ 
+  }
+
+  .grid{
+    width:306px;
+    height: 306px;
+    padding: 7px;
+  }
+
+  mat-grid-tile{
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .left{
+    border-left: 3px solid red;
+  }

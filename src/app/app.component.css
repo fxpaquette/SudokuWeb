@@ -17,3 +17,7 @@ h1{
     grid-area: import;
     padding-left: 100px;
 }
+
+.grid{
+    grid-area: convert;
+}

@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayGridComponent implements OnInit {
 
-  constructor() { }
+    my_matrix: Number[][];
+    constructor() {
+        //Matrice de test
+        this.my_matrix = new Array<Array<Number>>();
+        for (let i = 0; i < 9; i++) {
+            let row:Number[]  = new Array<Number>();      
+            for (let j = 0; j <9; j++){
+                row.push(new Number(0));
+            }
+            this.my_matrix.push(row);
+        }
+    }
 
   ngOnInit() {
   }

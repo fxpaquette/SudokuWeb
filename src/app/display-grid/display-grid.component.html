@@ -1,1 +1,18 @@
-<p>display-grid works!</p>
+<div class = "box_2">
+    <div class = "convert-button-div">
+        <button mat-raised-button color="blue" class="convert-button">
+            Read grid
+        </button>
+    </div>
+    <div class = "grid-view">
+        <div class = grid>
+        <mat-grid-list cols="9" rowHeight="34" gutterSize="0">
+            <div *ngFor="let row of my_matrix">
+                <div *ngFor="let cell of row;index as i">
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">{{cell}}</mat-grid-tile>
+                </div>
+            </div>
+        </mat-grid-list>
+        </div>
+    </div>
+</div>
