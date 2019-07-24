@@ -1,11 +1,9 @@
 
 <div class = "master">
-    <div class = "file-select">
         <input type='file'style="display: none" #fileInput accept="image/*" (change) = "onChangeImportImage()"/>
         <button mat-raised-button color="blue" class="file-select-button" (click) = "onClickImportImageButton()">
             Import image
         </button>
-    </div>
     <div class = "view">
         <img src="" class = "image" height="300" width = "300" id="imageDisplayArea">
     </div>

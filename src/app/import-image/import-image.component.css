@@ -1,14 +1,17 @@
 
   .master {
     display: grid;
+    justify-items: center;
     grid-template-areas:
                 "select"
                 "preview";
   }
   
-  .file-select {
+  .file-select-button {
     grid-area: select;
-    padding-left: 100px
+    background-color: rgb(7, 160, 248);
+    color: white;
+    margin-top: 10%;
 
   }
   

@@ -14,9 +14,17 @@ export class DisplayGridComponent implements OnInit {
         for (let i = 0; i < 9; i++) {
             let row:Number[]  = new Array<Number>();      
             for (let j = 0; j <9; j++){
-                row.push(new Number(0));
+                row.push(new Number(i*j));
             }
             this.my_matrix.push(row);
+        }
+    }
+
+    fillGrid(){
+        for(let i = 0; i < 9; i++){
+            for (let j = 0; j <9; j++){
+                document.getElementById("index"+"-"+i+"-"+j).innerHTML = this.my_matrix[i][j].toString();
+            }
         }
     }
 

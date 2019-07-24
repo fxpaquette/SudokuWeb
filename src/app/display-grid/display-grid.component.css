@@ -1,13 +1,25 @@
 .box-2 {
     display: grid;
     grid-template-areas:
-                "button"
-                "preview";
+                "buttonc buttons"
+                "preview preview";
   }
   
-  .convert-button-div {
-    grid-area: button;
-    padding-left: 100px
+  .convert-button {
+    grid-area: buttonc;
+    margin-left: 20%;
+    background-color: rgb(7, 160, 248);
+    color: white;
+    margin-top: 10%;
+
+  }
+
+  .solve-button {
+    background-color: rgb(7, 160, 248);
+    color: white;
+    grid-area: buttons;
+    margin-left: 20%;
+    margin-top: 10%;
 
   }
   
@@ -26,11 +38,35 @@
     padding: 7px;
   }
 
-  mat-grid-tile{
-    border: 1px solid black;
+  #case{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
     background-color: rgb(255, 255, 255);
+    border-left: 1px solid black;
   }
 
-  .left{
-    border-left: 3px solid red;
+  #left_red{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border-left: 2px solid red;
   }
+
+  #top_red{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 2px solid red;
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid black;
+  }
+
+  #top_left_red{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 2px solid red;
+    background-color: rgb(255, 255, 255);
+    border-left: 2px solid red;
+  }
+
