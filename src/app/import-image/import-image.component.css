@@ -4,7 +4,7 @@
     justify-items: center;
     grid-template-areas:
                 "select"
-                "preview";
+                "view";
   }
   
   .file-select-button {
@@ -16,7 +16,7 @@
   }
   
   .view {
-    grid-area: preview;
+    grid-area: view;
     margin: 2rem 0;
     width: 320px;
     height: 320px;
@@ -24,6 +24,6 @@
  
   }
 
-  .image {
+  #imageDisplayArea {
     padding: 10px
   }

@@ -16,20 +16,24 @@ export class ImportImageComponent {
   }
 
   onChangeImportImage(): void {
+    //Va chercher le fichier
     const files: { [key: string]: File } = this.fileInput.nativeElement.files;
     this.file = files[0];
     console.log(files[0])
-
     let reader = new FileReader();
+    let canva = document.getElementById('imageDisplayArea') as HTMLCanvasElement;
+    let ctx = canva.getContext("2d");
+    //Quand le filereader lie le fichier:
     reader.onload = function(e){
-        let imageDisplayArea = document.getElementById('imageDisplayArea');
-        imageDisplayArea.setAttribute('src',reader.result.toString());
-
-        //let fileDisplayArea = document.getElementById('fileDisplayArea');
-        //let img = new Image();
-        //img.src = reader.result.toString();
-        //fileDisplayArea.appendChild(img);
+        let img = new Image();
+        //Quand l'objet image recoit un fichier
+        img.onload=function(ev){
+            ctx.drawImage(img,0,0,300,300);
+        }
+        //L'objet image recoit la source
+        img.src = reader.result.toString();        
     }
+    //Le file reader recoit le fichier
     reader.readAsDataURL(files[0]);
   }
 
