@@ -1,10 +1,38 @@
-
-<div class = "master">
+<div id = "master">
+    <!--Composante d'import d'image-->
+    <div id = "import-root">
         <input type='file'style="display: none" #fileInput accept="image/*" (change) = "onChangeImportImage()"/>
-        <button mat-raised-button color="blue" class="file-select-button" (click) = "onClickImportImageButton()">
+        <button mat-raised-button color="blue" id="file-select-button" (click) = "onClickImportImageButton()">
             Import image
         </button>
-    <div class = "view">
-        <canvas height="300" width = "300" id="imageDisplayArea"></canvas>
+        <div id = "display-canva">
+            <canvas height="300" width = "300" id="imageDisplayArea"></canvas>
+        </div>
     </div>
+    <!--Fin composante d'import d'image-->
+    <!--Composante d'affichage de la grille-->
+    <div id = "solve">
+        <button mat-raised-button color="blue" class="convert-button" (click)="fillGrid()">
+            Read grid
+        </button>
+        <button mat-raised-button color="blue" class="solve-button" (click)="solveGrid()">
+            Solve!
+        </button>
+        <div class = "grid-view">
+            <div class = grid>
+            <mat-grid-list cols="9" rowHeight="34" gutterSize="0">
+                <div *ngFor="let row of my_matrix; index as j">
+                    <div *ngFor="let cell of row;index as i">
+                        <mat-grid-tile *ngIf="(i==3 || i==6) && (j!=3 && j!=6)" id="left_red" [colspan]="1" [rowspan]="1"><div id = "index-{{i}}-{{j}}"></div></mat-grid-tile>
+                        <mat-grid-tile *ngIf="(j==3 || j==6) && (i!=3 && i!=6)" id="top_red" [colspan]="1" [rowspan]="1"><div id = "index-{{i}}-{{j}}"></div></mat-grid-tile>
+                        <mat-grid-tile *ngIf="(j==3 || j==6) && (i==3 || i==6)" id="top_left_red" [colspan]="1" [rowspan]="1"><div id = "index-{{i}}-{{j}}"></div></mat-grid-tile>
+                        <mat-grid-tile *ngIf="i!=3 && i!=6 && j!=3 && j!=6" id="case" [colspan]="1" [rowspan]="1"><div id = "index-{{i}}-{{j}}"></div></mat-grid-tile>
+                    </div>
+                </div>
+            </mat-grid-list>
+            </div>
+        </div>
+    </div>
+    <!--Fin affichage de la grile-->
+
 </div>

@@ -7,22 +7,7 @@ h1{
     margin:0;
 }
 
-.boxes {
-    display: grid;
-    justify-items: center;
+.app-import-image {
     margin-left: 20%;
     margin-right: 20%;
-    grid-template-areas:
-                "import convert";
   }
-
-.import{
-    grid-area: import;
-    margin: 5%;
-
-}
-
-.grid{
-    grid-area: convert;
-    margin:5%;
-}

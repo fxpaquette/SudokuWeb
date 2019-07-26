@@ -10,6 +10,27 @@ export class ImportImageComponent {
   @ViewChild('fileInput', {static: false})
   fileInput: any;
   file: File | null=null;
+  my_matrix: Number[][];
+
+  constructor() {
+    //Matrice de test
+    this.my_matrix = new Array<Array<Number>>();
+    for (let i = 0; i < 9; i++) {
+        let row:Number[]  = new Array<Number>();      
+        for (let j = 0; j <9; j++){
+            row.push(new Number(i*j));
+        }
+        this.my_matrix.push(row);
+    }
+  }
+
+  fillGrid(){
+    for(let i = 0; i < 9; i++){
+        for (let j = 0; j <9; j++){
+            document.getElementById("index"+"-"+i+"-"+j).innerHTML = this.my_matrix[i][j].toString();
+        }
+    }
+  }
 
   onClickImportImageButton(): void {
     this.fileInput.nativeElement.click();

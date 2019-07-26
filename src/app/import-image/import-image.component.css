@@ -1,22 +1,91 @@
+#master {
+    display: grid;
+    justify-items: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    grid-template-areas:
+                "import convert";
+  }
 
-  .master {
+#import-root{
+    grid-area: import;
+    margin: 5%;
     display: grid;
     justify-items: center;
     grid-template-areas:
                 "select"
                 "view";
-  }
+
+}
+
+#solve{
+    grid-area: convert;
+    margin:5%;
+    display: grid;
+    justify-items: center;
+    grid-template-areas:
+                "buttonc buttons"
+                "preview preview";
+}
+/*---------------------------------*/
   
-  .file-select-button {
+  
+/*#import-root {
+    display: grid;
+    justify-items: center;
+    grid-template-areas:
+                "select"
+                "view";
+}*/
+  
+#file-select-button {
     grid-area: select;
     background-color: rgb(7, 160, 248);
     color: white;
-    margin-top: 10%;
+    margin-top: 10px;
+
+}
+  
+#display-canva {
+    grid-area: view;
+    margin: 2rem 0;
+    width: 320px;
+    height: 320px;
+    background-image: url("../../assets/images/degrade.png");
+ 
+}
+
+#imageDisplayArea {
+    padding: 10px
+}
+
+/*--------------------------------------*/
+/*#solve {
+    display: grid;
+    grid-template-areas:
+                "buttonc buttons"
+                "preview preview";
+  }*/
+  
+  .convert-button {
+    grid-area: buttonc;
+    background-color: rgb(7, 160, 248);
+    color: white;
+    margin-top: 10px;
+    
+
+  }
+
+  .solve-button {
+    grid-area: buttons;
+    background-color: rgb(7, 160, 248);
+    color: white;
+    margin-top: 10px;
 
   }
   
-  .view {
-    grid-area: view;
+  .grid-view {
+    grid-area: preview;
     margin: 2rem 0;
     width: 320px;
     height: 320px;
@@ -24,6 +93,41 @@
  
   }
 
-  #imageDisplayArea {
-    padding: 10px
+  .grid{
+    width:306px;
+    height: 306px;
+    padding: 7px;
+  }
+
+  /*For the sudoky grid cells*/
+  #case{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid black;
+  }
+
+  #left_red{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    border-left: 2px solid red;
+  }
+
+  #top_red{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 2px solid red;
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid black;
+  }
+
+  #top_left_red{
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 2px solid red;
+    background-color: rgb(255, 255, 255);
+    border-left: 2px solid red;
   }
