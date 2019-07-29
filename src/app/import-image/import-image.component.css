@@ -83,6 +83,7 @@
     margin-top: 10px;
 
   }
+
   
   .grid-view {
     grid-area: preview;
@@ -99,7 +100,7 @@
     padding: 7px;
   }
 
-  /*For the sudoky grid cells*/
+  /*For the sudoku grid cells*/
   #case{
     border-bottom: 1px solid black;
     border-right: 1px solid black;

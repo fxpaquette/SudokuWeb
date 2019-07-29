@@ -31,7 +31,7 @@ export class ImportImageComponent {
     let my_nj_matrix = SudokuMatrix.ImageToGrid(this.my_image)
     for(let i = 0; i < 9; i++){
         for (let j = 0; j <9; j++){
-            document.getElementById("index"+"-"+i+"-"+j).innerHTML = my_nj_matrix.get(i,j).toString();
+            document.getElementById("index"+"-"+i+"-"+j).innerHTML = my_nj_matrix.get(j,i).toString();
         }
     }
   }
