@@ -1,4 +1,5 @@
 import * as nj from '../bower_components/numjs/dist/numjs.min.js';
+import {NumbersOCRModule} from './app/numbers-ocr/numbers-ocr.module';
 
 //Foncion range similaire a celle de python
 const range = ( a , b ) => Array.from( new Array( b > a ? b - a : a - b ), ( x, i ) => b > a ? i + a : a - i );

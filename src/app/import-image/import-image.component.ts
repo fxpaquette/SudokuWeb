@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import * as nj from '../../../bower_components/numjs/dist/numjs.min.js';
-import * as SudokuMatrix from '../../ImageToArray'
+import {ImageToArrayModule} from '../image-to-array/image-to-array.module';
+import {NumbersOCRModule} from '../numbers-ocr/numbers-ocr.module';
+import {NumbersOCRService} from '../numbers-ocr/numbers-ocr.service';
 
 @Component({
   selector: 'app-import-image',
@@ -14,8 +16,10 @@ export class ImportImageComponent {
   file: File | null=null;
   my_matrix: Number[][];
   my_image: HTMLImageElement;
+  imageToArrayModule: ImageToArrayModule;
 
-  constructor() {
+  constructor(imageToArrayModule: ImageToArrayModule) {
+    this.imageToArrayModule = imageToArrayModule;
     //Matrice de test
     this.my_matrix = new Array<Array<Number>>();
     for (let i = 0; i < 9; i++) {
@@ -28,7 +32,7 @@ export class ImportImageComponent {
   }
 
   fillGrid(){
-    let my_nj_matrix = SudokuMatrix.ImageToGrid(this.my_image)
+    let my_nj_matrix = this.imageToArrayModule.ImageToGrid(this.my_image)
     for(let i = 0; i < 9; i++){
         for (let j = 0; j <9; j++){
             document.getElementById("index"+"-"+i+"-"+j).innerHTML = my_nj_matrix.get(j,i).toString();

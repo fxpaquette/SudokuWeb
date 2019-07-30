@@ -7,13 +7,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ImportImageComponent } from './import-image/import-image.component';
-import { DisplayGridComponent } from './display-grid/display-grid.component';
+import {NumbersOCRModule} from './numbers-ocr/numbers-ocr.module';
+import { HttpClientModule} from '@angular/common/http';
+import {ImageToArrayModule} from './image-to-array/image-to-array.module';
+import {NumbersOCRService} from './numbers-ocr/numbers-ocr.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ImportImageComponent,
-    DisplayGridComponent
+    ImportImageComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +23,12 @@ import { DisplayGridComponent } from './display-grid/display-grid.component';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    MatGridListModule
+    MatGridListModule,
+    NumbersOCRModule,
+    ImageToArrayModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [NumbersOCRService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
