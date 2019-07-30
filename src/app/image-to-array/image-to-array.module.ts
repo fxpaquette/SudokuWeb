@@ -15,11 +15,11 @@ const range = ( a , b ) => Array.from( new Array( b > a ? b - a : a - b ), ( x, 
     NumbersOCRModule
   ]
 })
-export class ImageToArrayModule {
+export class ImageToArrayModule{
+
 
     constructor(private ocr: NumbersOCRModule){
-        //this.ocr = new NumbersOCRModule();
-        this.ocr.decode();
+        this.ocr = ocr;
     }
 
     public ImageToGrid(image){
@@ -66,7 +66,9 @@ export class ImageToArrayModule {
                     //Ajoute les bandes verticales de pixels blancs pour avoir une largeur de 28
                     let img_case_final = this.ajusteLargeur(img_case_cropped);
                     //Appel le OCR pour detecter le chiffre
-                    let num = 1; //Appel OCR
+                    let num = 11; //Appel OCR
+                    num = this.ocr.predict(img_case_final);
+                    //console.log("num returned: ",num);
                     my_string += " " + num.toString();
                     output_matrix.set(i,j,num);
     
@@ -77,6 +79,7 @@ export class ImageToArrayModule {
                     nj.images.save(img_case_final,$test);
                 }
             }
+            //console.log(my_string);
         }
         return output_matrix;
     }
