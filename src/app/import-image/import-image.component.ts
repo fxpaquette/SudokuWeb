@@ -32,10 +32,20 @@ export class ImportImageComponent {
   }
 
   fillGrid(){
-    let my_nj_matrix = this.imageToArrayModule.ImageToGrid(this.my_image)
+    //Fonction appele quand on appui sur "Read grid"
+    //let my_nj_matrix = this.imageToArrayModule.ImageToGrid(this.my_image)
     for(let i = 0; i < 9; i++){
+        let my_nj_matrix = this.imageToArrayModule.ImageToGrid(this.my_image,i)
         for (let j = 0; j <9; j++){
-            document.getElementById("index"+"-"+i+"-"+j).innerHTML = my_nj_matrix.get(j,i).toString();
+            let num = my_nj_matrix.get(i,j);
+            let div = document.getElementById("index"+"-"+j+"-"+i);
+            if (num != 0){
+                div.style.fontWeight = "900"; 
+                div.style.fontSize = "x-large"
+                div.innerHTML = num.toString();
+            }else{
+                div.innerHTML = "";
+            }
         }
     }
   }

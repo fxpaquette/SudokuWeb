@@ -11,6 +11,6 @@ export class NumbersOCRService {
   constructor(private httpClient :HttpClient) {  
   }
   getData(){
-    return this.httpClient.get("../../assets/param_neural_net/neuralnet_saved_2.txt",{responseType: 'text'});
+    return this.httpClient.get("../../assets/param_neural_net/neuralnet_saved_3.txt",{responseType: 'text'});
   }
 }

@@ -113,8 +113,10 @@ export class NumbersOCRModule {
 
     public predict(example){
         let noeuds_precedent = example.flatten().tolist();
+        //Binarization de l'image
         for (let pixel of noeuds_precedent){
-            pixel = pixel/255;
+            if (pixel > 127){ pixel = 1; }
+            else{ pixel = 0; }
         }
         for (let i of range(0,this.nb_couches-2)){
             let noeus_nouveaux = [];
@@ -133,10 +135,10 @@ export class NumbersOCRModule {
             let output_vec = [];
             for (let j of range(0,this.nb_class)){
                 let vec_weights = this.liste_couches[this.liste_couches.length-1].slice([j,j+1]).flatten().tolist();
-                output_vec.push(Math.round(this.sigmoid(this.sommeprod(vec_weights,noeuds_precedent))));
+                output_vec.push(this.sigmoid(this.sommeprod(vec_weights,noeuds_precedent)));
             }
-            output = this.indexOfMax(output_vec);
             console.log(output_vec.toString());
+            output = this.indexOfMax(output_vec);
         }
         return output
     }
