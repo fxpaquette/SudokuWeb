@@ -41,7 +41,7 @@ export class SudokuSolverModule {
                 //Column-Number Constraints
                 cols_start = 162+col*9
                 for (let i of range(0,9)){
-                    this.matrix.set(range_rows[i],cols_start+i,);
+                    this.matrix.set(range_rows[i],cols_start+i,1);
                 }
                 //Box-Number Constraints
                 let box = this.getBox(row,col)
@@ -130,6 +130,7 @@ export class SudokuSolverModule {
         this.generateMatrix();
         let solver = new DancingLinksXModule(this.matrix);
         let rows_solution = solver.runDLX();
+        console.log("Rows_solution",rows_solution);
         let sol = this.convertSolutionRows(rows_solution);
         return sol;
     }

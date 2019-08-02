@@ -62,7 +62,6 @@ export class ImportImageComponent {
                     div.innerHTML = "";
                 }
             }
-            console.log(self.njMatrix.toString());
             row++;
             setTimeout(work, 0);
         }
@@ -105,16 +104,21 @@ export class ImportImageComponent {
   solveGrid(){
     let solver = new SudokuSolverModule(this.njMatrix);
     let solution = solver.getSolution()
+    console.log(this.njMatrix.toString());
     for(let i = 0; i < 9; i++){
         for (let j = 0; j <9; j++){
+            let num_original = this.njMatrix.get(i,j);
             let num = solution.get(i,j);
             let div = document.getElementById("index"+"-"+j+"-"+i);
-            if (num != 0){
+            if (num_original != 0){
                 div.style.fontWeight = "900"; 
-                div.style.fontSize = "x-large"
+                div.style.fontSize = "x-large";
                 div.innerHTML = num.toString();
             }else{
-                div.innerHTML = "";
+                div.style.color = "rgb(94, 194, 23)";
+                div.style.fontWeight = "900"; 
+                div.style.fontSize = "x-large";
+                div.innerHTML = num.toString();
             }
         }
     }

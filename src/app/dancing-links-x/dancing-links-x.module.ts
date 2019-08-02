@@ -39,12 +39,12 @@ class OneNode{
         return rightNode
     }
     setDown(downNode){
-        if(this.c != downNode.c)
-        downNode.d = this.d
-        downNode.d.u = downNode
-        this.d = downNode
-        downNode.u = this
-        return downNode
+        //if(this.c != downNode.c)
+        downNode.d = this.d;
+        downNode.d.u = downNode;
+        this.d = downNode;
+        downNode.u = this;
+        return downNode;
     }
     detachLR(){
         this.l.r=this.r
@@ -122,7 +122,7 @@ export class DancingLinksXModule {
             let n = new ColumnNode(i.toString());
             listColumnNodes.push(n);
             header = header.setRight(n);
-            //header sert de variable pour conserver la node precedent dans la boucle
+        //header sert de variable pour conserver la node precedent dans la boucle
         //Durant la boucle le r de header reste toujours le header original donc on ne le perd pas
         //On le reassigne a la fin de la boucle
         }
@@ -143,6 +143,7 @@ export class DancingLinksXModule {
             }
         }
         header.size = nbCols;
+        console.log("MakeNodes done");
         return header;
     }
 
@@ -219,4 +220,57 @@ export class DancingLinksXModule {
         //print("Rows: ",rows)
         return rows
     }
+
+    printMatrix(){
+        console.log("----------------------------");
+
+        let temp1 = this.header.r;
+        let temp2;
+        let temp3;
+        while(temp1 != this.header){
+            console.log("----Colonne----");
+            temp2 = temp1.d;
+            while(temp2 != temp1){
+                let my_string = "";
+                my_string += temp2.c.name + " --> ";
+                temp3 = temp2.r;
+                while(temp3 != temp2){
+                    my_string+=temp3.c.name+" --> ";
+                    temp3 = temp3.r;
+                }
+                console.log(my_string);
+                temp2 = temp2.d;
+            }
+            temp1 = temp1.r;
+        }
+
+    }
+
+    test(){
+        let temp1 = this.header.r;
+        /*while(temp1 != this.header){
+            console.log("temp1 ",temp1);
+            temp1 = temp1.r;
+        }
+        console.log("Sorti",temp1);
+        console.log("Sorti",this.header);*/
+        let i = 0;
+        let temp2 = temp1.d;
+        while(temp2 != temp1){
+            console.log("temp2 ",temp2);
+            temp2= temp2.d;
+            i++;
+            if (i>12){break;}
+        }
+        console.log("Sorti",temp2);
+        console.log("Sorti",temp1);
+    }
 }
+
+//let matrice_test = nj.array([[1,0,0,1,0,0,1],[1,0,0,1,0,0,0],[0,0,0,1,1,0,1],[0,0,1,0,1,1,0],[0,1,1,0,0,1,1],[0,1,0,0,0,0,1]])
+//let solver_test = new DancingLinksXModule(matrice_test)
+//solver_test.printMatrix()
+//solver_test.test();
+//console.log("DancingLinksX test")
+//let sol = solver_test.runDLX();
+//console.log(sol);
