@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import * as nj from '../../../bower_components/numjs/dist/numjs.min.js';
 import {ImageToArrayModule} from '../image-to-array/image-to-array.module';
 import {SudokuSolverModule} from '../sudoku-solver/sudoku-solver.module';
+import { range } from 'rxjs';
 //import {NumbersOCRModule} from '../numbers-ocr/numbers-ocr.module';
 //import {NumbersOCRService} from '../numbers-ocr/numbers-ocr.service';
 
@@ -10,7 +11,7 @@ import {SudokuSolverModule} from '../sudoku-solver/sudoku-solver.module';
   templateUrl: './import-image.component.html',
   styleUrls: ['./import-image.component.css']
 })
-export class ImportImageComponent {
+export class ImportImageComponent implements OnInit {
 
   @ViewChild('fileInput', {static: false})
   fileInput: any;
@@ -20,7 +21,15 @@ export class ImportImageComponent {
   imageToArrayModule: ImageToArrayModule;
   njMatrix: nj.NdArray;
 
+  ngOnInit() {
+    let button1 = document.getElementById("convert-button") as HTMLButtonElement;
+    let button2 = document.getElementById("solve-button") as HTMLButtonElement;
+    button1.disabled = true;
+    button2.disabled = true;
+}
+
   constructor(imageToArrayModule: ImageToArrayModule) {
+    
     this.njMatrix = nj.zeros([9,9]);
     this.imageToArrayModule = imageToArrayModule;
     //Matrice de test
@@ -58,23 +67,35 @@ export class ImportImageComponent {
                     div.style.fontWeight = "900"; 
                     div.style.fontSize = "x-large"
                     div.innerHTML = num.toString();
+                    div.style.color = "rgb(0,0,0)";
                 }else{
                     div.innerHTML = "";
+                    div.style.color = "rgb(0,0,0)";
                 }
             }
+            //Avant de sortir de la boucle, reactive le bouton Solve
+            if(row == 8){let button = document.getElementById("solve-button") as HTMLButtonElement; button.disabled = false;}
             row++;
             setTimeout(work, 0);
         }
     };
     //Appel pour lancer le traitement de l'image
     work();
-  }
+}
 
   onClickImportImageButton(): void {
     this.fileInput.nativeElement.click();
   }
 
   onChangeImportImage(): void {
+    //Reset les grilles actuelles
+    this.njMatrix = nj.zeros([9,9]);
+    for (let i = 0; i < 9; i++){
+        for (let j = 0; j< 9; j++){
+            let div = document.getElementById("index"+"-"+j+"-"+i);
+            div.innerHTML = "";
+        }
+    }
     //Va chercher le fichier
     const files: { [key: string]: File } = this.fileInput.nativeElement.files;
     this.file = files[0];
@@ -97,6 +118,10 @@ export class ImportImageComponent {
     }
     //Le file reader recoit le fichier
     reader.readAsDataURL(files[0]);
+    //Active le bouton Read grid
+    let button1  = document.getElementById("convert-button") as HTMLButtonElement;button1.disabled = false;
+    let button2  = document.getElementById("solve-button") as HTMLButtonElement;button2.disabled = true;
+
   }
 
 

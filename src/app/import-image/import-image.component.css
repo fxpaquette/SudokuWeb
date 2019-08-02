@@ -67,7 +67,7 @@
                 "preview preview";
   }*/
   
-  .convert-button {
+  #convert-button {
     grid-area: buttonc;
     background-color: rgb(7, 160, 248);
     color: white;
@@ -76,7 +76,7 @@
 
   }
 
-  .solve-button {
+  #solve-button {
     grid-area: buttons;
     background-color: rgb(7, 160, 248);
     color: white;

@@ -13,10 +13,10 @@
     <!--Fin composante d'import d'image-->
     <!--Composante d'affichage de la grille-->
     <div id = "solve">
-        <button mat-raised-button color="blue" class="convert-button" (click)="fillGrid()">
+        <button mat-raised-button disabled color="blue" id = "convert-button" (click)="fillGrid()">
             Read grid
         </button>
-        <button mat-raised-button color="blue" class="solve-button" (click)="solveGrid()">
+        <button mat-raised-button disabled color="blue" id = "solve-button" (click)="solveGrid()">
             Solve!
         </button>
         <div class = "grid-view">
