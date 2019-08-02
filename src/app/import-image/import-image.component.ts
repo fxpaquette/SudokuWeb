@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import * as nj from '../../../bower_components/numjs/dist/numjs.min.js';
 import {ImageToArrayModule} from '../image-to-array/image-to-array.module';
-import {NumbersOCRModule} from '../numbers-ocr/numbers-ocr.module';
-import {NumbersOCRService} from '../numbers-ocr/numbers-ocr.service';
+import {SudokuSolverModule} from '../sudoku-solver/sudoku-solver.module';
+//import {NumbersOCRModule} from '../numbers-ocr/numbers-ocr.module';
+//import {NumbersOCRService} from '../numbers-ocr/numbers-ocr.service';
 
 @Component({
   selector: 'app-import-image',
@@ -14,11 +15,13 @@ export class ImportImageComponent {
   @ViewChild('fileInput', {static: false})
   fileInput: any;
   file: File | null=null;
-  my_matrix: Number[][];
+  my_matrix: Number[][]; //Sert seulement a initialiser la grille vide
   my_image: HTMLImageElement;
   imageToArrayModule: ImageToArrayModule;
+  njMatrix: nj.NdArray;
 
   constructor(imageToArrayModule: ImageToArrayModule) {
+    this.njMatrix = nj.zeros([9,9]);
     this.imageToArrayModule = imageToArrayModule;
     //Matrice de test
     this.my_matrix = new Array<Array<Number>>();
@@ -31,23 +34,41 @@ export class ImportImageComponent {
     }
   }
 
+  //Fonction qui analyse l'image et affiche la grille de depart
   fillGrid(){
     //Fonction appele quand on appui sur "Read grid"
-    //let my_nj_matrix = this.imageToArrayModule.ImageToGrid(this.my_image)
-    for(let i = 0; i < 9; i++){
-        let my_nj_matrix = this.imageToArrayModule.ImageToGrid(this.my_image,i)
-        for (let j = 0; j <9; j++){
-            let num = my_nj_matrix.get(i,j);
-            let div = document.getElementById("index"+"-"+j+"-"+i);
-            if (num != 0){
-                div.style.fontWeight = "900"; 
-                div.style.fontSize = "x-large"
-                div.innerHTML = num.toString();
-            }else{
-                div.innerHTML = "";
-            }
+    //Ici j'ai du separer les calculs et l'affichage en deux parties
+    //Pour pouvoir afficher (raffraichir le html) apres chaque ligne (row)
+    let temp_nj_matrix = nj.zeros([9,9]);
+    let row = 0;
+    let self = this;
+    let work = function(){
+        if (row < 9){
+            temp_nj_matrix = self.imageToArrayModule.ImageToGrid(self.my_image,row);
+            displayWork();
         }
-    }
+    };
+    let displayWork = function(){
+        if (row < 9){
+            for (let j = 0; j <9; j++){
+                let num = temp_nj_matrix.get(row,j);
+                self.njMatrix.set(row,j,num);
+                let div = document.getElementById("index"+"-"+j+"-"+row);
+                if (num != 0){
+                    div.style.fontWeight = "900"; 
+                    div.style.fontSize = "x-large"
+                    div.innerHTML = num.toString();
+                }else{
+                    div.innerHTML = "";
+                }
+            }
+            console.log(self.njMatrix.toString());
+            row++;
+            setTimeout(work, 0);
+        }
+    };
+    //Appel pour lancer le traitement de l'image
+    work();
   }
 
   onClickImportImageButton(): void {
@@ -80,6 +101,22 @@ export class ImportImageComponent {
   }
 
 
-  
-
+  //Fonction pour trouver et afficher la solution de la grille
+  solveGrid(){
+    let solver = new SudokuSolverModule(this.njMatrix);
+    let solution = solver.getSolution()
+    for(let i = 0; i < 9; i++){
+        for (let j = 0; j <9; j++){
+            let num = solution.get(i,j);
+            let div = document.getElementById("index"+"-"+j+"-"+i);
+            if (num != 0){
+                div.style.fontWeight = "900"; 
+                div.style.fontSize = "x-large"
+                div.innerHTML = num.toString();
+            }else{
+                div.innerHTML = "";
+            }
+        }
+    }
+  }
 }

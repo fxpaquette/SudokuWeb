@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import * as nj from '../../../bower_components/numjs/dist/numjs.min.js';
 import {NumbersOCRService} from './numbers-ocr.service';
-import { Observable } from 'rxjs/internal/Observable';
 import { NjArray } from 'numjs';
 
 //Foncion range similaire a celle de python
@@ -28,7 +27,7 @@ export class NumbersOCRModule {
     constructor(private serviceHttpFile:NumbersOCRService){
         this.nb_couches = 3;
         this.nb_neurones = 800;
-        this.serviceHttpFile.getData().subscribe(data => {console.log(data); this.decode(data);});
+        this.serviceHttpFile.getData().subscribe(data => {this.decode(data);});
     }
 
     public decode(data: string){
@@ -37,7 +36,7 @@ export class NumbersOCRModule {
         this.nb_class = Number(list_lines[2]);
         let liste_couche1 = list_lines[4].split(' ');
         liste_couche1.shift();//Car JS met un element vide au debut
-        console.log(liste_couche1);
+        //console.log(liste_couche1);
         this.liste_couches = [];
         this.liste_couches.push(nj.zeros([this.nb_neurones,this.nb_attributs]));
         //Premiere couche
@@ -65,7 +64,7 @@ export class NumbersOCRModule {
         //Derniere couche
         let liste_couchek = list_lines[list_lines.length-3].split(' ');
         liste_couchek.shift();//Car JS met un element vide au debut
-        console.log(liste_couchek);
+        //console.log(liste_couchek);
         //Si on a 2 classes il y a juste une sortie
         let nb_classes_temp = 1;
         if (this.nb_class>2){
@@ -79,9 +78,9 @@ export class NumbersOCRModule {
                 compteur++;
             }
         }
-        console.log("Nb class",this.nb_class)
-        console.log("Nb attributs",this.nb_attributs)
-        console.log(this.liste_couches);
+        //console.log("Nb class",this.nb_class)
+        //console.log("Nb attributs",this.nb_attributs)
+        //console.log(this.liste_couches);
         console.log("Decode is done");
     }
 
@@ -137,7 +136,7 @@ export class NumbersOCRModule {
                 let vec_weights = this.liste_couches[this.liste_couches.length-1].slice([j,j+1]).flatten().tolist();
                 output_vec.push(this.sigmoid(this.sommeprod(vec_weights,noeuds_precedent)));
             }
-            console.log(output_vec.toString());
+            //console.log(output_vec.toString());
             output = this.indexOfMax(output_vec);
         }
         return output

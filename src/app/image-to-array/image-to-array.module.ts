@@ -67,8 +67,8 @@ export class ImageToArrayModule{
                     let img_case_cropped = img_case.slice(bornes[1],bornes[0]);
                     let width_cropped = img_case_cropped.shape[1];
                     let height_case = img_case_cropped.shape[0];
-                    console.log("height: ",img_case_cropped.shape[0]);
-                    console.log("width: ",width_cropped)
+                    //console.log("height: ",img_case_cropped.shape[0]);
+                    //console.log("width: ",width_cropped)
                     
                     //let $test = document.getElementById("test") as HTMLCanvasElement;
                     //$test.width = img_case_cropped.shape[1];$test.height = img_case_cropped.shape[0];
@@ -95,15 +95,15 @@ export class ImageToArrayModule{
     
     
                     //Display test
-                    let $test = document.getElementById("test") as HTMLCanvasElement;
-                    $test.width = img_case_final.shape[1];$test.height = img_case_final.shape[0];
-                    nj.images.save(img_case_final,$test);
-                    console.log("Shape_final",img_case_final.shape.toString())
+                    //let $test = document.getElementById("test") as HTMLCanvasElement;
+                    //$test.width = img_case_final.shape[1];$test.height = img_case_final.shape[0];
+                    //nj.images.save(img_case_final,$test);
+                    //console.log("Shape_final",img_case_final.shape.toString())
                 }
             }
             //console.log(my_string);
         }
-        console.log(output_matrix.toString())
+        //console.log(output_matrix.toString())
         return output_matrix;
     }
     
